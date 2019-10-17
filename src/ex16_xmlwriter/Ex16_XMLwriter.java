@@ -18,7 +18,7 @@ public class Ex16_XMLwriter {
 
         //Para leer los objetos almacenados en un fichero, necesitaremos las
         //Clases FileInputStream y ObjectIntputStream
-        FileInputStream leerFich = new FileInputStream("C:\\Users\\luis-\\Desktop\\2ºDAM\\AD\\ex13\\serial2.txt");
+        FileInputStream leerFich = new FileInputStream("/home/oracle/Desktop/ex13/serial2.txt");
         ObjectInputStream leerOIS = new ObjectInputStream(leerFich);
 
         //tenemos que almacenar los objetos en una variable Object ó Product,
@@ -27,7 +27,7 @@ public class Ex16_XMLwriter {
         //castear la lectura a "Product"
         //En cambio, si almacenamos el objeto en una variable tipo "Object", no
         //Escribir todos los datos en un xml de manera automática
-        File fich = new File("C:\\Users\\luis-\\Desktop\\2ºDAM\\AD\\ex16\\products.xml");
+        File fich = new File("/home/oracle/Desktop/ex16/products.xml");
         FileWriter fichFW = new FileWriter(fich);
 
         XMLOutputFactory xmlOF = XMLOutputFactory.newInstance();
@@ -35,11 +35,11 @@ public class Ex16_XMLwriter {
 
         //Object puede tomar cualquier valor por ser la clase primigenia(?)
         //Utilizaremos esta variable para almacenar nuestros objetos y comprobar
-        //que el fichera ha llegado a su fin
+        //que el fichero ha llegado a su fin
         /*
-        se creará un xml simple con su declaración, una etiqueta raíz,
-        una etiqueta que englobe a cada objeto y dentro de ellas los 3 atributos
-        de los objetos (etiqueta - valor)
+         se creará un xml simple con su declaración, una etiqueta raíz,
+         una etiqueta que englobe a cada objeto y dentro de ellas los 3 atributos
+         de los objetos (etiqueta - valor)
          */
         xmlSW.writeStartDocument("1.0");
         //raiz
@@ -55,7 +55,7 @@ public class Ex16_XMLwriter {
         while (obj != null) {
             cont++;
             //para cada objeto una etiqueta que lo englobe:
-            xmlSW.writeStartElement("Producto " + Integer.toString(cont));
+            xmlSW.writeStartElement("Producto_" + Integer.toString(cont));
             //Cada atributo su etiqueta y valor:
             xmlSW.writeStartElement("Codigo");
             xmlSW.writeCharacters(obj.getCodigo());
@@ -67,15 +67,15 @@ public class Ex16_XMLwriter {
             xmlSW.writeCharacters(Double.toString(obj.getPrecio()));
             xmlSW.writeEndElement();
             xmlSW.writeEndElement();
+            
             obj = (Product) leerOIS.readObject();
 
         }
         xmlSW.writeEndElement();
         xmlSW.writeEndDocument();
-        
+
         xmlSW.close();
         fichFW.close();
-        
 
     }
 
