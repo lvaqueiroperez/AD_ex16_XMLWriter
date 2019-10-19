@@ -18,7 +18,7 @@ public class Ex16_XMLwriter {
 
         //Para leer los objetos almacenados en un fichero, necesitaremos las
         //Clases FileInputStream y ObjectIntputStream
-        FileInputStream leerFich = new FileInputStream("/home/oracle/Desktop/ex13/serial2.txt");
+        FileInputStream leerFich = new FileInputStream("C:\\Users\\luis-\\Desktop\\2ºDAM\\AD\\ex13\\serial2.txt");
         ObjectInputStream leerOIS = new ObjectInputStream(leerFich);
 
         //tenemos que almacenar los objetos en una variable Object ó Product,
@@ -27,15 +27,14 @@ public class Ex16_XMLwriter {
         //castear la lectura a "Product"
         //En cambio, si almacenamos el objeto en una variable tipo "Object", no
         //Escribir todos los datos en un xml de manera automática
-        File fich = new File("/home/oracle/Desktop/ex16/products.xml");
+        //Siempre que almacenemos objetos en una variable, preferiblemente la 
+        //variable será del mismo tipo del objeto, NO Object
+        File fich = new File("C:\\Users\\luis-\\Desktop\\2ºDAM\\AD\\ex16\\products.xml");
         FileWriter fichFW = new FileWriter(fich);
 
         XMLOutputFactory xmlOF = XMLOutputFactory.newInstance();
         XMLStreamWriter xmlSW = xmlOF.createXMLStreamWriter(fichFW);
 
-        //Object puede tomar cualquier valor por ser la clase primigenia(?)
-        //Utilizaremos esta variable para almacenar nuestros objetos y comprobar
-        //que el fichero ha llegado a su fin
         /*
          se creará un xml simple con su declaración, una etiqueta raíz,
          una etiqueta que englobe a cada objeto y dentro de ellas los 3 atributos
@@ -50,8 +49,7 @@ public class Ex16_XMLwriter {
         String codigo;
         String desc;
         String precio;
-        //Hay algún problema con el bucle o con la forma de obtener las variables?
-        //los métodos de escritura xml aceptan variables, pero no llamadas a getters???
+
         while (obj != null) {
             cont++;
             //para cada objeto una etiqueta que lo englobe:
@@ -60,14 +58,14 @@ public class Ex16_XMLwriter {
             xmlSW.writeStartElement("Codigo");
             xmlSW.writeCharacters(obj.getCodigo());
             xmlSW.writeEndElement();
-            xmlSW.writeStartElement("Descripion");
+            xmlSW.writeStartElement("Descripcion");
             xmlSW.writeCharacters(obj.getDescripcion());
             xmlSW.writeEndElement();
             xmlSW.writeStartElement("Precio");
             xmlSW.writeCharacters(Double.toString(obj.getPrecio()));
             xmlSW.writeEndElement();
             xmlSW.writeEndElement();
-            
+
             obj = (Product) leerOIS.readObject();
 
         }
