@@ -18,7 +18,7 @@ public class Ex16_XMLwriter {
 
         //Para leer los objetos almacenados en un fichero, necesitaremos las
         //Clases FileInputStream y ObjectIntputStream
-        FileInputStream leerFich = new FileInputStream("C:\\Users\\luis-\\Desktop\\2ºDAM\\AD\\ex13\\serial2.txt");
+        FileInputStream leerFich = new FileInputStream("/home/oracle/Desktop/ex13/serial2.txt");
         ObjectInputStream leerOIS = new ObjectInputStream(leerFich);
 
         //tenemos que almacenar los objetos en una variable Object ó Product,
@@ -29,7 +29,7 @@ public class Ex16_XMLwriter {
         //Escribir todos los datos en un xml de manera automática
         //Siempre que almacenemos objetos en una variable, preferiblemente la 
         //variable será del mismo tipo del objeto, NO Object
-        File fich = new File("C:\\Users\\luis-\\Desktop\\2ºDAM\\AD\\ex16\\products.xml");
+        File fich = new File("/home/oracle/Desktop/ex16/products.xml");
         FileWriter fichFW = new FileWriter(fich);
 
         XMLOutputFactory xmlOF = XMLOutputFactory.newInstance();
